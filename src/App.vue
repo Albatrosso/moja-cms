@@ -1,10 +1,8 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <transition name="fade-page">
+      <router-view/>
+    </transition>
   </div>
 </template>
 
@@ -16,17 +14,15 @@
   text-align: center;
   color: #2c3e50;
 }
+.fade-page-leave-active {
+  transition: all .5s ease-in;
+}
 
-#nav {
-  padding: 30px;
+.fade-page-enter-active {
+  transition: all .4s ease-in .5s;
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.fade-page-enter, .fade-page-leave-to {
+  opacity: 0;
 }
 </style>
