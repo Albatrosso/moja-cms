@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Login from '../views/Login.vue';
-import Dash from '../views/DashBoardPage.vue';
+import Create from '../views/CreatePage.vue';
 
 Vue.use(VueRouter);
 
@@ -14,7 +14,7 @@ const routes = [
   {
     path: '/dash-board',
     name: 'Dash-board',
-    component: Dash,
+    component: Create,
     // component: () => import(/* webpackChunkName: "dashboard" */ '../views/DashBoardPage.vue'),
   },
 ];

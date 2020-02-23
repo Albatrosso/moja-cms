@@ -1,5 +1,6 @@
 <template>
   <div class="dash-board">
+    <modal @approved="$emit('save')" @back="$emit('close-modal')" v-if="showModal"></modal>
     <div class="dash-menu">
       <h2 class="dash-title">Действия</h2>
       <ul class="menu-list">
@@ -9,30 +10,22 @@
       </ul>
     </div>
     <div class="dash-content">
-      <div class="editor-result">
-        <h2 class="dash-title">Так будет выглядеть отформатированный текст на странице</h2>
-        <div v-html="newText"></div>
-      </div>
-      <div class="editor-block">
-        <ckeditor :editor="editor" v-model="newText" :config="editorConfig"></ckeditor>
-      </div>
+      <slot name="content"></slot>
     </div>
   </div>
 </template>
 
 <script>
-import { Vue, Component } from 'vue-property-decorator';
-import Ckeditor from '@ckeditor/ckeditor5-build-classic';
+import { Vue, Component, Prop } from 'vue-property-decorator';
+import Modal from '../components/Modal.vue';
 
   @Component({
-
+    components: {
+      modal: Modal,
+    },
   })
 export default class DashBoard extends Vue {
-  editor = Ckeditor;
-  newText = '';
-  editorConfig = {
-    height: '50%',
-  };
+    @Prop(Boolean)showModal;
   }
 </script>
 
@@ -87,5 +80,26 @@ export default class DashBoard extends Vue {
   .editor-result {
     width: 100%;
     height: 50%;
+  }
+
+  .save-button {
+    outline: none;
+    width: 50%;
+    margin: 10px auto;
+    height: 45px;
+    color: #ffffff;
+    background-color: #394B59;
+    border-radius: 16px;
+
+    &:disabled {
+      background-color: #E7E7E7;
+      color: #2c3e50;
+      border: 1px solid #2c3e50;
+    }
+  }
+
+  .result {
+    text-align: left;
+    padding: 0 25px;
   }
 </style>
