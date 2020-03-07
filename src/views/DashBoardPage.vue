@@ -2,9 +2,9 @@
   <div class="dash-board">
     <modal @approved="$emit('save')" @back="$emit('close-modal')" v-if="showModal"></modal>
     <div class="dash-menu">
-      <h2 class="dash-title">Действия</h2>
+      <h2 class="dash-title">Действия:</h2>
       <ul class="menu-list">
-        <li class="menu-list__item">Обзор всех новостей</li>
+        <li class="menu-list__item">Обзор новостей</li>
         <li class="menu-list__item">Создать новость</li>
         <li class="menu-list__item">Выйти</li>
       </ul>
@@ -63,7 +63,7 @@ export default class DashBoard extends Vue {
   text-align: left;
 
   &__item {
-    padding: 5px 25px;
+    padding: 10px 25px;
 
     &:hover {
       color: #ffffff;
