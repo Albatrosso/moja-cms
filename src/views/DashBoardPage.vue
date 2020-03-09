@@ -4,13 +4,19 @@
     <div class="dash-menu">
       <h2 class="dash-title">Действия:</h2>
       <ul class="menu-list">
-        <li class="menu-list__item">Обзор новостей</li>
-        <li class="menu-list__item">Создать новость</li>
-        <li class="menu-list__item">Выйти</li>
+        <li class="menu-list__item">
+          <router-link class="menu-list__link" to="/news-overview">Обзор новостей</router-link>
+        </li>
+        <li class="menu-list__item">
+          <router-link class="menu-list__link" to="/dash-board">Создать новость</router-link>
+        </li>
+        <li class="menu-list__item">
+          <router-link class="menu-list__link" to="/login">Выйти</router-link>
+        </li>
       </ul>
     </div>
     <div class="dash-content">
-      <slot name="content"></slot>
+      <slot></slot>
     </div>
   </div>
 </template>
@@ -48,7 +54,7 @@ export default class DashBoard extends Vue {
 }
 
 .dash-menu {
-  flex: 0 1 auto;
+  flex: 0.05 1 auto;
   border-right: 1px solid #2c3e50;
 }
 
@@ -61,17 +67,24 @@ export default class DashBoard extends Vue {
 
 .menu-list {
   text-align: left;
-
-  &__item {
+  &__link {
+    text-decoration: none;
+    font: inherit;
+    color: #000;
+    display: block;
     padding: 10px 25px;
 
+    &:hover {
+      color: #ffffff;
+    }
+  }
+  &__item {
     &:hover {
       color: #ffffff;
       background-color: #394B59;
     }
   }
 }
-
   .editor-block {
     width: 100%;
     height: 50%;

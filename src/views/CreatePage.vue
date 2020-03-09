@@ -1,7 +1,6 @@
 <template>
 <div>
   <dash :show-modal="showModal" @close-modal="openModal" @save="save">
-    <template v-slot:content>
       <div class="editor-result">
         <h2 class="dash-title">Так будет выглядеть отформатированный текст на странице:</h2>
         <div class="result" v-html="newText"></div>
@@ -10,7 +9,6 @@
         <ckeditor :editor="editor" v-model="newText"></ckeditor>
         <button class="save-button" :disabled="!newText" @click="openModal">Сохранить</button>
       </div>
-    </template>
   </dash>
 </div>
 </template>

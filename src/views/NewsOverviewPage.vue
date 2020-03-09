@@ -1,12 +1,18 @@
 <template>
   <div class="news-overview">
-    <ul class="news-overview__list"></ul>
+    <dash>
+      <ul class="news-overview__list"></ul>
+    </dash>
   </div>
 </template>
 
 <script>
 import { Component, Vue } from 'vue-property-decorator';
+import DashBoard from './DashBoardPage.vue';
 @Component({
+  components: {
+    dash: DashBoard,
+  },
 })
 export default class NewsOverview extends Vue {
 }
@@ -14,4 +20,4 @@ export default class NewsOverview extends Vue {
 
 <style scoped lang="scss">
 
-</style>
+</style
