@@ -2,7 +2,6 @@
   <div class="login">
     <div class="login__form">
       <div class="login__card">
-        <h2 class="login__headline"></h2>
         <div class="login__input-wrap">
           <label for="login" class="login__label">Логин:
             <input class="login__field" type="text" id="login">
@@ -69,9 +68,6 @@ export default class Login extends Vue {
         background-color: rgba(231,231,231,0.9);
         border-radius: 0 0px 5px 5px;
       }
-    }
-    &__headline {
-      margin: 0;
     }
     &__input-wrap {
       width: 80%;
