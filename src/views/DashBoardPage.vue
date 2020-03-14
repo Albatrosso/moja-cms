@@ -49,13 +49,16 @@ export default class DashBoard extends Vue {
 }
 
 .dash-title {
-  border-bottom: 1px solid #2c3e50;
-  padding-bottom: 5px;
+  margin: 0;
+  padding: 10px 0;
+  font-size: 18px;
+  font-weight: normal;
+  border-bottom: 1px solid #a7a7a7;
 }
 
 .dash-menu {
   flex: 0.05 1 auto;
-  border-right: 1px solid #2c3e50;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
 .dash-content {
@@ -81,7 +84,7 @@ export default class DashBoard extends Vue {
   &__item {
     &:hover {
       color: #ffffff;
-      background-color: #394B59;
+      background-color: #a7a7a7;
     }
   }
 }
