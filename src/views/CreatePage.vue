@@ -2,7 +2,7 @@
 <div>
   <dash :show-modal="showModal" @close-modal="openModal" @save="save">
       <div class="editor-result">
-        <h2 class="dash-title">Так будет выглядеть отформатированный текст на странице:</h2>
+        <h2 class="dash-title">Отображаемый текст на странице:</h2>
         <div class="result" v-html="newText"></div>
       </div>
       <div class="editor-block">

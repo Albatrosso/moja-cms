@@ -32,11 +32,13 @@ export default class Login extends Vue {
 </script>
 
 <style scoped lang="scss">
+
   .login {
     width: 100%;
     height: 100%;
     position: relative;
     background: url("../assets/background.jpeg") center/cover;
+
     &__form {
       height: 100vh;
       display: flex;
@@ -45,6 +47,7 @@ export default class Login extends Vue {
       justify-content: center;
       align-items: center;
     }
+
     &__card {
       box-sizing: border-box;
       width: 500px;
@@ -59,6 +62,7 @@ export default class Login extends Vue {
       background-color: #ffffff;
       border-radius: 5px;
       box-shadow: 0px 0px 10px -1px rgba(0,0,0,0.2);
+
       &::after {
         content: "";
         width: 100%;
@@ -69,14 +73,18 @@ export default class Login extends Vue {
         border-radius: 0 0px 5px 5px;
       }
     }
+
     &__input-wrap {
+      margin-top: 50px;
       width: 80%;
     }
+
     &__label {
       display: block;
       text-align: right;
       width: 300px;
     }
+
     &__field {
       width: 60%;
       max-height: 50px;
@@ -87,6 +95,7 @@ export default class Login extends Vue {
       box-shadow: none;
       outline: none;
     }
+
     &__submit {
       width: 20%;
       height: 30px;
@@ -97,6 +106,7 @@ export default class Login extends Vue {
       outline: none;
       background-color: #3b3b3b;
       color: #ffffff;
+
       &:hover {
         opacity: 0.7;
       }

@@ -1,22 +1,34 @@
 <template>
   <div class="dash-board">
     <modal @approved="$emit('save')" @back="$emit('close-modal')" v-if="showModal"></modal>
-    <div class="dash-menu">
-      <h2 class="dash-title">Действия:</h2>
-      <ul class="menu-list">
-        <li class="menu-list__item">
-          <router-link class="menu-list__link" to="/news-overview">Обзор новостей</router-link>
+    <header class="dash-header">
+      <ul class="dash-header__list">
+        <li class="dash-header__item">
+          <img class="dash-header__logo" src="#" alt="MajoCMS">
         </li>
-        <li class="menu-list__item">
-          <router-link class="menu-list__link" to="/dash-board">Создать новость</router-link>
-        </li>
-        <li class="menu-list__item">
-          <router-link class="menu-list__link" to="/login">Выйти</router-link>
+        <li class="dash-header__item">
+          <router-link class="dash-header__link" to="/login">Выйти</router-link>
         </li>
       </ul>
+      <div class="dash-header__user">
+        <p class="dash-header__id">Редактор</p>
+      </div>
+    </header>
+    <div class="dash-page">
+    <div class="dash-menu">
+        <h2 class="dash-title">Действия:</h2>
+        <ul class="menu-list">
+          <li class="menu-list__item">
+            <router-link class="menu-list__link" to="/news-overview">Обзор новостей</router-link>
+          </li>
+          <li class="menu-list__item">
+            <router-link class="menu-list__link" to="/dash-board">Создать новость</router-link>
+          </li>
+        </ul>
     </div>
     <div class="dash-content">
       <slot></slot>
+    </div>
     </div>
   </div>
 </template>
@@ -37,15 +49,18 @@ export default class DashBoard extends Vue {
 
 <style scoped lang="scss">
 
-  ul {
-    list-style: none;
-    padding: 0;
-  }
 .dash-board {
-  display: flex;
-  flex-flow: row;
   height: 100vh;
   width: 100%;
+  display: flex;
+  flex-flow: column;
+  background-color: #e7e7e7;
+}
+
+.dash-page {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
 }
 
 .dash-title {
@@ -56,20 +71,51 @@ export default class DashBoard extends Vue {
   border-bottom: 1px solid #a7a7a7;
 }
 
+.dash-header {
+  height: 50px;
+  padding: 0 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #517060;
+  background: linear-gradient(#517060, #3d845f);
+  color: #ffffff;
+
+  &__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__link {
+    font: inherit;
+    color: #ffffff;
+    text-decoration: none;
+
+    &:hover {
+      opacity: 0.75;
+    }
+  }
+}
+
 .dash-menu {
   flex: 0.05 1 auto;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
 .dash-content {
-  flex: 1 1 25%;
   display: flex;
+  flex: 1 1 25%;
   justify-content: space-between;
   flex-flow: column;
 }
 
 .menu-list {
+  list-style: none;
+  padding: 0;
   text-align: left;
+
   &__link {
     text-decoration: none;
     font: inherit;
@@ -82,6 +128,7 @@ export default class DashBoard extends Vue {
     }
   }
   &__item {
+
     &:hover {
       color: #ffffff;
       background-color: #a7a7a7;
