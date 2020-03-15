@@ -1,13 +1,14 @@
 <template>
-<div>
-  <dash :show-modal="showModal" @close-modal="openModal" @save="save">
-      <div class="editor-result">
+<div class="editor__wrap">
+  <dash class="editor" :show-modal="showModal" @close-modal="openModal" @save="save">
+      <div class="editor__output">
         <h2 class="dash-title">Отображаемый текст на странице:</h2>
-        <div class="result" v-html="newText"></div>
+        <div class="editor__result" v-html="newText"/>
       </div>
-      <div class="editor-block">
-        <ckeditor :editor="editor" v-model="newText"></ckeditor>
-        <button class="save-button" :disabled="!newText" @click="openModal">Сохранить</button>
+      <div class="editor__input">
+        <ckeditor class="editor__field" :editor="editor" v-model="newText"/>
+        <button class="editor__button" :disabled="!newText"
+                @click="openModal" type="submit">Сохранить</button>
       </div>
   </dash>
 </div>
@@ -43,6 +44,44 @@ export default class CreatePage extends Vue {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+  .editor {
+    background-color: #ffffff;
 
+    &__input {
+      width: 100%;
+      height: 50%;
+    }
+
+    &__output {
+      width: 100%;
+      height: 50%;
+    }
+
+    &__field {
+      height: 100px;
+    }
+
+    &__button {
+      width: 50%;
+      margin: 10px auto;
+      height: 45px;
+      color: #ffffff;
+      border: none;
+      background-color: #517060;
+      border-radius: 16px;
+      outline: none;
+
+      &:disabled {
+        background-color: #e7e7e7;
+        color: #454545;
+        border: 1px solid #454545;
+      }
+    }
+
+    &__result {
+      text-align: left;
+      padding: 0 25px;
+    }
+  }
 </style>

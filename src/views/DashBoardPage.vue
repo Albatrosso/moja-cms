@@ -4,7 +4,7 @@
     <header class="dash-header">
       <ul class="dash-header__list">
         <li class="dash-header__item">
-          <img class="dash-header__logo" src="#" alt="MajoCMS">
+          <img class="dash-header__logo" src="../assets/icon.svg" alt="MajoCMS">
         </li>
         <li class="dash-header__item">
           <router-link class="dash-header__link" to="/login">Выйти</router-link>
@@ -73,7 +73,7 @@ export default class DashBoard extends Vue {
 
 .dash-header {
   height: 50px;
-  padding: 0 25px;
+  padding: 0 30px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -85,10 +85,13 @@ export default class DashBoard extends Vue {
   &__list {
     margin: 0;
     padding: 0;
+    display: flex;
+    align-items: center;
     list-style: none;
   }
 
   &__link {
+    margin-left: 30px;
     font: inherit;
     color: #ffffff;
     text-decoration: none;
@@ -97,11 +100,29 @@ export default class DashBoard extends Vue {
       opacity: 0.75;
     }
   }
+
+  &__id {
+    padding-right: 60px;
+    position: relative;
+
+    &::after {
+      content: url("../assets/editor.svg");
+      height: 40px;
+      width: 40px;
+      position: absolute;
+      top: 50%;
+      left: 78%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background-color: #ffffff;
+    }
+  }
 }
 
 .dash-menu {
   flex: 0.05 1 auto;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  background-color: #ffffff;
 }
 
 .dash-content {
@@ -112,16 +133,16 @@ export default class DashBoard extends Vue {
 }
 
 .menu-list {
-  list-style: none;
   padding: 0;
+  list-style: none;
   text-align: left;
 
   &__link {
-    text-decoration: none;
-    font: inherit;
-    color: #000;
     display: block;
     padding: 10px 25px;
+    text-decoration: none;
+    font: inherit;
+    color: #000000;
 
     &:hover {
       color: #ffffff;
@@ -131,38 +152,9 @@ export default class DashBoard extends Vue {
 
     &:hover {
       color: #ffffff;
-      background-color: #a7a7a7;
+      background-color: #517060;
     }
   }
 }
-  .editor-block {
-    width: 100%;
-    height: 50%;
-  }
 
-  .editor-result {
-    width: 100%;
-    height: 50%;
-  }
-
-  .save-button {
-    outline: none;
-    width: 50%;
-    margin: 10px auto;
-    height: 45px;
-    color: #ffffff;
-    background-color: #394B59;
-    border-radius: 16px;
-
-    &:disabled {
-      background-color: #E7E7E7;
-      color: #2c3e50;
-      border: 1px solid #2c3e50;
-    }
-  }
-
-  .result {
-    text-align: left;
-    padding: 0 25px;
-  }
 </style>
