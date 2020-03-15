@@ -25,8 +25,7 @@ export default class Login extends Vue {
   password = '';
 
   submitLogin() {
-    console.log('submited');
-    this.$router.push('/news-overview');
+    this.$router.push('/dash-board');
   }
 }
 </script>

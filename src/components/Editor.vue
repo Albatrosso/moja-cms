@@ -1,6 +1,5 @@
 <template>
-<div class="editor__wrap">
-  <dash class="editor" :show-modal="showModal" @close-modal="openModal" @save="save">
+  <div class="editor" :show-modal="showModal" @close-modal="openModal" @save="save">
       <div class="editor__output">
         <h2 class="editor__title">Отображаемый текст на странице:</h2>
         <div class="editor__result" v-html="newText"/>
@@ -10,20 +9,17 @@
         <button class="editor__button" :disabled="!newText"
                 @click="openModal" type="submit">Сохранить</button>
       </div>
-  </dash>
-</div>
+  </div>
 </template>
 
 <script>
 import { Vue, Component } from 'vue-property-decorator';
 import Ckeditor from '@ckeditor/ckeditor5-build-classic';
 import axios from 'axios';
-import DashBoardPage from './DashBoardPage.vue';
-import Modal from '../components/Modal.vue';
+import Modal from './Modal.vue';
 
 @Component({
   components: {
-    dash: DashBoardPage,
     modal: Modal,
   },
 })
@@ -46,6 +42,7 @@ export default class CreatePage extends Vue {
 
 <style lang="scss">
   .editor {
+    height: 100%;
     background-color: #ffffff;
 
 

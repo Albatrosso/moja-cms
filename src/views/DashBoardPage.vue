@@ -17,17 +17,19 @@
     <div class="dash-page">
     <div class="dash-menu">
       <div class="tabs-selector">
-        <button class="dash-title" v-for="(tab, index) in tabs" :key="index" @click="currentTab = tab.tab" :class="{active: currentTab === tab.tab}">{{tab.name}}</button>
+        <button class="dash-title" v-for="(tab, index) in tabs" :key="index" @click="chooseTab(tab)" :class="{active: currentTab === tab.tab}">{{tab.name}}</button>
       </div>
         <keep-alive>
           <transition name="fade-page">
-            <component :is="currentTabComponent"></component>
+            <component @choosenProp="getChoosenProp" :is="currentTabComponent"></component>
           </transition>
         </keep-alive>
 
     </div>
     <div class="dash-content">
-      <slot></slot>
+      <transition name="fade-page">
+        <component :is="currentEditorComponent"></component>
+      </transition>
     </div>
     </div>
   </div>
@@ -38,6 +40,8 @@ import { Vue, Component, Prop } from 'vue-property-decorator';
 import FacilityMenu from '../components/FacilityMenu.vue';
 import NewsMenu from '../components/NewsMenu.vue';
 import Modal from '../components/Modal.vue';
+import Editor from '../components/Editor.vue';
+import NewsOverview from '../components/NewsOverview.vue';
 
 
   @Component({
@@ -45,27 +49,49 @@ import Modal from '../components/Modal.vue';
       modal: Modal,
       'facility-menu': FacilityMenu,
       'news-menu': NewsMenu,
+      'editor': Editor,
+      'news-cards': NewsOverview,
     },
   })
 export default class DashBoard extends Vue {
     @Prop(Boolean)showModal;
 
     currentTab = 'news-menu';
+    currentEditorMode = 'editor';
+    choosenProp = 1;
+    tabId = 0;
     tabs = [
       {
-        id: 1,
+        id: 0,
         name: 'Новости',
         tab: 'news-menu',
+        editorComponent: ['news-cards', 'editor'],
       },
       {
-        id: 2,
+        id: 1,
         name: 'Филиалы',
         tab: 'facility-menu',
+        editorComponent: ['' ,'editor'],
       },
     ];
 
     get currentTabComponent() {
       return this.currentTab;
+    }
+
+   get currentEditorComponent() {
+      const choosenTab = this.tabs.find((el) => el.id === this.tabId);
+      this.currentEditorMode = choosenTab.editorComponent[this.choosenProp];
+      return this.currentEditorMode;
+    }
+
+    getChoosenProp(val) {
+      this.choosenProp = val;
+    }
+
+    chooseTab(tab){
+      this.currentTab = tab.tab;
+      this.tabId = tab.id;
     }
   }
 </script>
@@ -164,31 +190,6 @@ export default class DashBoard extends Vue {
   border: 1px solid #333333;
 }
 
-.menu-list {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  text-align: left;
-
-  &__link {
-    display: block;
-    padding: 10px 25px;
-    text-decoration: none;
-    font: inherit;
-    color: #000000;
-
-    &:hover {
-      color: #ffffff;
-    }
-  }
-  &__item {
-
-    &:hover {
-      color: #ffffff;
-      background-color: #517060;
-    }
-  }
-}
 .active {
   background-color: #ffffff;
   color: #333333;
