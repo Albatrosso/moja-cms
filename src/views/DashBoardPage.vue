@@ -134,6 +134,7 @@ export default class DashBoard extends Vue {
 
 .menu-list {
   padding: 0;
+  margin: 0;
   list-style: none;
   text-align: left;
 
