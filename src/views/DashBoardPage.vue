@@ -16,15 +16,15 @@
     </header>
     <div class="dash-page">
     <div class="dash-menu">
-        <h2 class="dash-title">Действия:</h2>
-        <ul class="menu-list">
-          <li class="menu-list__item">
-            <router-link class="menu-list__link" to="/news-overview">Обзор новостей</router-link>
-          </li>
-          <li class="menu-list__item">
-            <router-link class="menu-list__link" to="/dash-board">Создать новость</router-link>
-          </li>
-        </ul>
+      <div class="tabs-selector">
+        <button class="dash-title" v-for="(tab, index) in tabs" :key="index" @click="currentTab = tab.tab" :class="{active: currentTab === tab.tab}">{{tab.name}}</button>
+      </div>
+        <keep-alive>
+          <transition name="fade-page">
+            <component :is="currentTabComponent"></component>
+          </transition>
+        </keep-alive>
+
     </div>
     <div class="dash-content">
       <slot></slot>
@@ -35,15 +35,38 @@
 
 <script>
 import { Vue, Component, Prop } from 'vue-property-decorator';
+import FacilityMenu from '../components/FacilityMenu.vue';
+import NewsMenu from '../components/NewsMenu.vue';
 import Modal from '../components/Modal.vue';
+
 
   @Component({
     components: {
       modal: Modal,
+      'facility-menu': FacilityMenu,
+      'news-menu': NewsMenu,
     },
   })
 export default class DashBoard extends Vue {
     @Prop(Boolean)showModal;
+
+    currentTab = 'news-menu';
+    tabs = [
+      {
+        id: 1,
+        name: 'Новости',
+        tab: 'news-menu',
+      },
+      {
+        id: 2,
+        name: 'Филиалы',
+        tab: 'facility-menu',
+      },
+    ];
+
+    get currentTabComponent() {
+      return this.currentTab;
+    }
   }
 </script>
 
@@ -65,7 +88,11 @@ export default class DashBoard extends Vue {
 
 .dash-title {
   margin: 0;
-  padding: 10px 0;
+  width: 50%;
+  outline: none;
+  padding: 10px 5px;
+  background-color: #3d845f;
+  color: #ffffff;
   font-size: 18px;
   font-weight: normal;
   border-bottom: 1px solid #a7a7a7;
@@ -157,5 +184,24 @@ export default class DashBoard extends Vue {
     }
   }
 }
+.active {
+  background-color: #ffffff;
+  color: #333333;
+}
 
+.tabs-selector {
+  width: 100%;
+}
+
+.fade-page-leave-active {
+  transition: all .5s ease-in;
+}
+
+.fade-page-enter-active {
+  transition: all .4s ease-in .5s;
+}
+
+.fade-page-enter, .fade-page-leave-to {
+  opacity: 0;
+}
 </style>
