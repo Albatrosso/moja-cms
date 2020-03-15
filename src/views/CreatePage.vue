@@ -2,11 +2,11 @@
 <div class="editor__wrap">
   <dash class="editor" :show-modal="showModal" @close-modal="openModal" @save="save">
       <div class="editor__output">
-        <h2 class="dash-title">Отображаемый текст на странице:</h2>
+        <h2 class="editor__title">Отображаемый текст на странице:</h2>
         <div class="editor__result" v-html="newText"/>
       </div>
       <div class="editor__input">
-        <ckeditor class="editor__field" :editor="editor" v-model="newText"/>
+        <ckeditor id="editor" class="editor__field" :editor="editor" v-model="newText"/>
         <button class="editor__button" :disabled="!newText"
                 @click="openModal" type="submit">Сохранить</button>
       </div>
@@ -44,9 +44,22 @@ export default class CreatePage extends Vue {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
   .editor {
     background-color: #ffffff;
+
+
+
+    &__title {
+      margin: 0;
+      outline: none;
+      padding: 10px 5px;
+      background-color: #3d845f;
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: normal;
+      border-bottom: 1px solid #a7a7a7;
+    }
 
     &__input {
       width: 100%;
@@ -56,6 +69,7 @@ export default class CreatePage extends Vue {
     &__output {
       width: 100%;
       height: 50%;
+			background-color: #ffffff;
     }
 
     &__field {
@@ -83,5 +97,9 @@ export default class CreatePage extends Vue {
       text-align: left;
       padding: 0 25px;
     }
+  }
+
+  .ck-content{
+    min-height: 290px;
   }
 </style>

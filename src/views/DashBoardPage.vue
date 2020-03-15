@@ -147,7 +147,9 @@ export default class DashBoard extends Vue {
 }
 
 .dash-menu {
-  flex: 0.05 1 auto;
+	width: 20%;
+  height: 500px;
+  margin: 30px 10px 0 30px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   background-color: #ffffff;
 }
@@ -156,7 +158,10 @@ export default class DashBoard extends Vue {
   display: flex;
   flex: 1 1 25%;
   justify-content: space-between;
+  height: 90%;
+	margin: 30px 30px 0 0;
   flex-flow: column;
+  border: 1px solid #333333;
 }
 
 .menu-list {
