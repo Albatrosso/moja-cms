@@ -9,19 +9,15 @@
           </div>
 
           <div class="modal-body">
-            Нажимая на кнопку принять - вы сохраните новость и разместите ее на сайте.
-            <br><br>
-            Убедитесь, что все выполнено верно.<br><br>
-            Если вы уверены, нажмите "Продолжить",<br>
-            Если вы хотели бы внести правки, нажмите "Назад".
+           <slot></slot>
           </div>
 
           <div class="modal-footer">
             <slot name="footer">
-              <button class="modal-default-button" @click="$emit('approved')">
+              <button class="modal-default-button" @click="$emit('save', true)">
                 Принять
               </button>
-              <button class="modal-default-button" @click="$emit('back')">
+              <button class="modal-default-button" @click="$emit('save', false)">
                 Назад
               </button>
             </slot>
@@ -33,11 +29,10 @@
 </template>
 
 <script>
-import { Vue, Component } from 'vue-property-decorator';
+import { Vue, Component, Prop} from 'vue-property-decorator';
 
 @Component
 export default class Modal extends Vue {
-
 }
 </script>
 

@@ -1,21 +1,24 @@
 <template>
-  <div class="editor" :show-modal="showModal" @close-modal="openModal" @save="save">
-      <div class="editor__output">
+  <div class="editor" >
         <h2 class="editor__title">Отображаемый текст на странице:</h2>
-        <div class="editor__result" v-html="newText"/>
-      </div>
       <div class="editor__input">
         <ckeditor id="editor" class="editor__field" :editor="editor" v-model="newText"/>
         <button class="editor__button" :disabled="!newText"
-                @click="openModal" type="submit">Сохранить</button>
+                @click="showModal = true" type="submit">Сохранить</button>
       </div>
+		<modal v-if="showModal" @save="save">
+      Нажимая на кнопку принять - вы сохраните новость и разместите ее на сайте.
+      <br><br>
+      Убедитесь, что все выполнено верно.<br><br>
+      Если вы уверены, нажмите "Продолжить",<br>
+      Если вы хотели бы внести правки, нажмите "Назад".
+    </modal>
   </div>
 </template>
 
 <script>
 import { Vue, Component } from 'vue-property-decorator';
 import Ckeditor from '@ckeditor/ckeditor5-build-classic';
-import axios from 'axios';
 import Modal from './Modal.vue';
 
 @Component({
@@ -28,14 +31,11 @@ export default class CreatePage extends Vue {
   newText = '';
   showModal = false;
 
-  openModal() {
-    this.showModal = !this.showModal;
-  }
-
-  save() {
-    axios.post('https://localhost:3026', {
-      newText: this.newText,
-    });
+  save(val) {
+    this.showModal = false;
+    if (val) {
+      this.newText = '';
+    }
   }
 }
 </script>
@@ -44,7 +44,6 @@ export default class CreatePage extends Vue {
   .editor {
     height: 100%;
     background-color: #ffffff;
-
 
 
     &__title {
@@ -97,6 +96,6 @@ export default class CreatePage extends Vue {
   }
 
   .ck-content{
-    min-height: 290px;
+    height: 550px;
   }
 </style>

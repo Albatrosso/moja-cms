@@ -184,7 +184,7 @@ export default class DashBoard extends Vue {
   display: flex;
   flex: 1 1 25%;
   justify-content: space-between;
-  height: 90%;
+  height: 700px;
 	margin: 30px 30px 0 0;
   flex-flow: column;
   border: 1px solid #333333;
